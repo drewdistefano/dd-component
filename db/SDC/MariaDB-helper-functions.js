@@ -1,20 +1,21 @@
 const fs = require('fs');
 const path = require('path')
-const { conn } = require('./MariaDB-config.js/index.js');
+const { conn } = require('./MariaDB-config.js');
+const faker = require("faker");
 
 //clears records file and populates with row of data n times
 //run script using `node --max-old-space-size=4096 helper-functions.js`
-const createRecordsFile = (value=10000000) => {
+const createRecordsFile = (value=100) => {
   let writePath = (__dirname, 'db_records_1.txt');
   let stream = fs.createWriteStream(writePath);
 
   for (let i=1; i<=value; i++){
-    stream.write(`${i},Elvis Russell", "Too many cooks spoil the broth.", 3, 1, 0, 1, 0, 1, 30, 2 \n`);
-  }
+    stream.write(`"${i}","${faker.name.findName()}","${faker.lorem.sentence()}",${Math.floor(Math.random()*100)},${Math.round(Math.random())},${Math.round(Math.random())},${Math.round(Math.random())},${Math.round(Math.random())},${Math.round(Math.random())},${Math.floor(Math.random()*50)},${Math.floor(Math.random()*25)}\n`);  }
   console.log('done writing to db_records_1.txt');
 };
 
-createRecordsFile(callback);
+createRecordsFile();
+
 const fastSeed = () => {
   let startTime = new Date();
   conn()
