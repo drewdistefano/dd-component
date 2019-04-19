@@ -8,6 +8,8 @@
     "node": ">=6.0.0"
   },
   "scripts": {
+    "10M":  "node --max-old-space-size=4096 ./db/SDC/MongoDB-helper-functions.js",
+    "seed": "mongoimport --db test --collection docs --type csv --file ./db/SDC/seeds/MongoDB_records_1.csv --headerline",
     "dev-start": "nodemon ./server/server.js",
     "start": "node ./server/server.js",
     "build": "webpack --watch -d",
@@ -26,7 +28,8 @@
     "dotenv": "^7.0.0",
     "express": "^4.16.3",
     "file-system": "^2.2.2",
-    "mongoose": "^5.4.20",
+    "mongodb": "^3.2.3",
+    "mongoose": "^5.5.2",
     "nodemon": "^1.18.10",
     "path": "^0.12.7",
     "prop-types": "^15.7.2",
