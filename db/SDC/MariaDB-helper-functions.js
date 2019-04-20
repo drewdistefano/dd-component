@@ -1,11 +1,11 @@
 const fs = require('fs');
 const path = require('path')
-const { conn } = require('./MariaDB-config.js');
+const { pool } = require('./MariaDB-config.js');
 const faker = require("faker");
 
 //clears records file and populates with row of data n times
 //run script using `node --max-old-space-size=4096 helper-functions.js`
-const createRecordsFile = (value=100) => {
+const generateData = (value=100) => {
   let writePath = (__dirname, 'db_records_1.txt');
   let stream = fs.createWriteStream(writePath);
 
@@ -14,9 +14,8 @@ const createRecordsFile = (value=100) => {
   console.log('done writing to db_records_1.txt');
 };
 
-createRecordsFile();
-
-const fastSeed = () => {
+//seeds the database from a .txt file
+const seed = () => {
   let startTime = new Date();
   conn()
   .then((connection)=>{
@@ -32,25 +31,23 @@ const fastSeed = () => {
   })
 };
 
-//loops through an insert query n times
-//very slow insertion method!
-const seed = (value=2) => {
-  let startTime = new Date();
-  conn()
+//Gets reviews based on product id
+const getReviewsById = (productId, callback) => {
+  pool.getConnection()
   .then((connection)=>{
-    connection.query('DELETE FROM records;');
-    while (value > 0){
-      connection.query(
-        `
-        INSERT INTO records (username, body, score, prosconsReliability, prosconsDurability, prosconsLooks, performance, prosconsValue, likes, dislikes) VALUES ("Elvis Russell", "Too many cooks spoil the broth.", 3, 1, 0, 1, 0, 1, 30, 2);
-        `
-      )
-      .then(()=>{console.log(`insertion loop has run from ${startTime} to ${new Date()}`)})
-      .catch((err)=>{console.log('error! unable to insert: ', err)});
-      value --;
-    }
+    console.log('connected to MariaDB!')
+    connection.query(`SELECT * FROM records WHERE id = ${productId}`)
+    .then((data)=>{
+      console.log('data retrieved from MariaDB!')
+      callback(null, data)
+    })
+    .catch((err)=>{
+      callback(err)
+    })
   })
-  .catch((err)=>{'ERROR! Unable to insert data: ', err});
-};
+  .catch((err)=>{
+    callback(err)
+  })
+}
 
-module.exports = { seed, fastSeed, createRecordsFile };
+module.exports = { generateData, seed, getReviewsById };

@@ -1,8 +1,8 @@
 require('./MongoDB-config');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/component', { useNewUrlParser: true });
 
-const Item = mongoose.model('Cat', { 
+const Item = mongoose.model('items', { 
   id: Number,
   username: String,
   body: String,
