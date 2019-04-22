@@ -1,4 +1,3 @@
-USE component;
 DROP TABLE if exists records;
 
 CREATE TABLE records (

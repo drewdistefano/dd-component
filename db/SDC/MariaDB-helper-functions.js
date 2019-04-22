@@ -5,7 +5,7 @@ const faker = require("faker");
 
 //clears records file and populates with row of data n times
 //run script using `node --max-old-space-size=4096 helper-functions.js`
-const generateData = (value=100) => {
+const generateData = (value=10000000) => {
   console.log("generating data...")
   let writePath = (__dirname, 'db_records_1.txt');
   let stream = fs.createWriteStream(writePath);
@@ -15,7 +15,7 @@ const generateData = (value=100) => {
   console.log('done writing to db_records_1.txt');
 };
 
-generateData();
+// generateData();
 
 //seeds the database from a .txt file
 const seed = () => {
@@ -23,15 +23,16 @@ const seed = () => {
   let startTime = new Date();
   pool.getConnection()
   .then((connection)=>{
-    connection.query('DELETE FROM records;')
-    .then(connection.query(`LOAD DATA INFILE '/Users/drewdistefano/Documents/code/dd-component/db/SDC/db_records_1.txt' INTO TABLE records FIELDS TERMINATED BY ',';`))
+    console.log('Connected to MariaDB!')
+    connection.query(`DELETE FROM records;`)
+    connection.query(`LOAD DATA INFILE '${__dirname + `/db_records_1.txt`}' INTO TABLE records FIELDS TERMINATED BY ',';`)
     .then(()=>{console.log('MariaDB done seeding!')})
-    .catch(()=>{console.log('unable to seed MariaDB')})
+    .catch((err)=>{console.log('unable to seed MariaDB ', err)})
   })
   .catch((err)=>{console.log('error! unable to seed MariaDB: ', err)})
 };
 
-seed()
+// seed()
 
 //Gets reviews based on product id
 const getReviewsById = (productId, callback) => {
