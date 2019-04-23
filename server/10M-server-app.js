@@ -1,7 +1,9 @@
+const currentDB = "MongoDB"
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { getReviewsById, postReview } = require('../db/SDC/MariaDB-helper-functions.js')
+// const { getReviewsById } = require('../db/SDC/MariaDB-helper-functions.js')
+const { getReviewsById } = require('../db/SDC/MongoDB-helper-functions.js')
 const path = require('path');
 const app = express();
 
@@ -11,10 +13,9 @@ app.use(cors());
 
 // Drew - Get review by product's id
 app.get('/api/getreviews', (req, res) => {
-  console.log('req.body>>>', req.body)
   console.log('getreviews triggered!!!')
-  console.log('req.query>>>', req.query)
-  let productId = req.query.data;
+  console.log('req.query.productId>>>', req.query.productId)
+  let productId = req.query.productId;
   getReviewsById(productId, (err, data) => {
     if (err) {
       console.log('Server: unable to get review by id: ', err)
@@ -34,7 +35,7 @@ app.get('/api/getreviews', (req, res) => {
       review.proscons.durability = review.prosconsDurability === 1 ? true : false;
       review.prosconsDurability = undefined;
     }
-    
+    console.log('data after modification>>>>>', data)
     res.status(201).send(data);
   })
 })

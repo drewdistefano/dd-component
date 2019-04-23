@@ -1,7 +1,8 @@
 DROP TABLE if exists records;
 
 CREATE TABLE records (
-     id INT,
+     review_id INT,
+     product_id INT,
      username VARCHAR(50),
      body VARCHAR(500),
      score INT,
@@ -11,5 +12,6 @@ CREATE TABLE records (
      performance INT,
      prosconsValue INT,
      likes INT,
-     dislikes INT
+     dislikes INT,
+     PRIMARY KEY (review_id)
  );
