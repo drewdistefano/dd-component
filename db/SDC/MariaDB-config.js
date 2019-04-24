@@ -5,6 +5,9 @@ const pool = mariadb.createPool({
   // connectionLimit = 200
 });
 
+pool.getConnection()
+.then((connection)=>{ module.exports = { connection }})
+
 console.log('MariaDB pool created!')
 
 module.exports = { pool };

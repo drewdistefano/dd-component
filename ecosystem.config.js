@@ -1,17 +1,17 @@
 module.exports = {
   apps: [{
-    name: 'ratingsgraph',
+    name: 'DMBS',
     script: './server/server.js'
   }],
   deploy: {
     production: {
       user: 'ubuntu',
-      host: '18.224.213.59',
-      key: '~/.ssh/jayhr.pem',
+      host: '18.191.13.142',
+      key: '~/.ssh/SDC.pem',
       ref: 'origin/master',
-      repo: 'https://github.com/axe-center/jayk-ratingsgraph.git',
-      path: '/home/ubuntu/graph1',
-      'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js'
+      repo: 'https://github.com/ten-7/dd-component.git',
+      path: '/home/ubuntu/Code/DBMS',
+      'post-deploy': 'npm install && npm run maria_seed && pm2 startOrRestart ecosystem.config.js'
     }
   }
 }

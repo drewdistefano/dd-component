@@ -10,7 +10,7 @@
   "scripts": {
     "mongo_write": "node --max-old-space-size=4096 db/SDC/MongoDB-data-gen.js",
     "mongo_seed": "mongoimport --db component --collection reviews --type csv --file db/SDC/MongoDB_records_1.csv --headerline",
-    "maria_seed": "node --max-old-space-size=4096 db/SDC/MariaDB-data-gen+seed.js.js",
+    "maria_seed": "node --max-old-space-size=4096 db/SDC/MariaDB-data-gen+seed.js",
     "dev-start": "nodemon ./server/server.js",
     "start": "node ./server/server.js",
     "build": "webpack --watch -d",
