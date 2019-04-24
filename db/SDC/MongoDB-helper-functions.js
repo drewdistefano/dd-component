@@ -25,6 +25,7 @@ const reviewSchema = mongoose.Schema({
 const Reviews = mongoose.model("reviews", reviewSchema);
 
 const getReviewsById = (productId, callback) => {
+  let startTime = new Date()
   Reviews.find({product_id: productId})
   .lean().exec((err, data)=>{
     if (err){
@@ -33,9 +34,25 @@ const getReviewsById = (productId, callback) => {
     }
     else {
       console.log('data: ', data)
+      console.log(`query time: ${new Date() - startTime} ms`)
       callback(null, data);
     }
   })
 };
+
+//queries database by review_id, for use in testing speed of single row query (versus multiple row)
+// const test = (review_id, callback) => {
+//   Reviews.find({_id: review_id})
+//   .limit(1).exec((err, data)=>{
+//     if (err){
+//       console.log(`Error! Unable to get reviews for product_id ${productId}`);
+//       callback(err);
+//     }
+//     else {
+//       console.log('data: ', data)
+//       callback(null, data);
+//     }
+//   })
+// };
 
 module.exports = { getReviewsById };
