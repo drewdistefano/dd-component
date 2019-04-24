@@ -10,20 +10,20 @@ app.use(express.static('dist'));
 app.use(bodyParser.json({urlEncoded: false}));
 app.use(cors());
 
-// For client 
-app.post('/api/getreviews', (req, res) => {
-  console.log('route getreviews started');
-  console.log('req.body.productId:', req.body.productId);
-  db.getReviewsById(req.body.productId, (err, success) => {
-    if (err) {
-      console.log('Server: db getReview error')
-      res.end();
-    } else {
-      console.log('Server: db getReview success');
-      res.status(201).send(success);
-    }
-  });
-});
+// // Jay - For client 
+// app.post('/api/getreviews', (req, res) => {
+//   console.log('route getreviews started');
+//   console.log('req.body.productId:', req.body.productId);
+//   db.getReviewsById(req.body.productId, (err, success) => {
+//     if (err) {
+//       console.log('Server: db getReview error')
+//       res.end();
+//     } else {
+//       console.log('Server: db getReview success');
+//       res.status(201).send(success);
+//     }
+//   });
+// });
 
 // For db seeding original
 app.post('/api/reviews', (req, res) => {

@@ -2,6 +2,11 @@ example
 node_modules
 .env
 npm-debug.log
+
+# Data files
+db/SDC/MongoDB_records_1.csv
+db/SDC/db_records_1.txt
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml

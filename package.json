@@ -8,13 +8,16 @@
     "node": ">=6.0.0"
   },
   "scripts": {
+    "mongo_write": "node --max-old-space-size=4096 db/SDC/MongoDB-data-gen.js",
+    "mongo_seed": "mongoimport --db component --collection reviews --type csv --file db/SDC/MongoDB_records_1.csv --headerline",
+    "maria_seed": "node --max-old-space-size=4096 db/SDC/MariaDB-data-gen+seed.js.js",
     "dev-start": "nodemon ./server/server.js",
     "start": "node ./server/server.js",
     "build": "webpack --watch -d",
     "restart": "pm2 startOrRestart ecosystem.config.js",
     "deploy": "pm2 deploy ecosystem.config.js production",
     "data": "node ./db/populate.js",
-    "test": "jest"
+    "test": "jest"  
   },
   "dependencies": {
     "@material-ui/core": "^3.9.3",
@@ -25,8 +28,11 @@
     "css-loader": "^2.1.1",
     "dotenv": "^7.0.0",
     "express": "^4.16.3",
+    "faker": "^4.1.0",
     "file-system": "^2.2.2",
-    "mongoose": "^5.4.20",
+    "mariadb": "^2.0.3",
+    "mongodb": "^3.2.3",
+    "mongoose": "^5.5.2",
     "nodemon": "^1.18.10",
     "path": "^0.12.7",
     "prop-types": "^15.7.2",

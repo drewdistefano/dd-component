@@ -3,7 +3,7 @@ import CenteredGrid from './Grid.js';
 import axios from 'axios';
 import '../style.css';
 
-const deployedIP = '18.224.213.59';
+const deployedIP = 'localhost:4000';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,6 +20,7 @@ class App extends React.Component {
 
   componentDidMount() {
     window.addEventListener('productId', (e) => {
+      console.log('event triggered with ', e.detail)
       this.setState({
         productId: e.detail
       }, () => {
@@ -27,7 +28,8 @@ class App extends React.Component {
           productId: this.state.productId
         }
         // console.log('window e.detail productId, data:', data)
-        axios.post(`http://${deployedIP}/api/getreviews`, data)
+        console.log('axios.post1 vvvvv')
+        axios.get(`http://${deployedIP}/api/getreviews`, {params: data})
           .then(res => {
             // console.log('axios getreviews success, res.data', res.data)
             const reviews = res.data;
@@ -97,9 +99,10 @@ class App extends React.Component {
       productId: this.state.productId
     }
     console.log('in App, data:', data)
-    axios.post(`http://${deployedIP}/api/getreviews`, data)
+    console.log('axios.post2 vvvvv')
+    axios.get(`http://${deployedIP}/api/getreviews`, {params: data})
       .then(res => {
-        // console.log('axios getreviews success, res.data', res.data)
+        console.log('axios getreviews success, res.data', res.data)
         const reviews = res.data;
         const newRatings = [0, 0, 0, 0, 0];
         const newPros = [0, 0, 0, 0, 0];
