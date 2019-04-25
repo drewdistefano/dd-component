@@ -1,11 +1,4 @@
-// require('./MongoDB-config');
-const mongoose = require('mongoose');
-const coll = mongoose.connect('mongodb://localhost:27017/component', { useNewUrlParser: true }, (err, data)=>{
-  if (err){
-    console.log('MongoDB connect error: ', err)
-  }
-  else console.log("MongoDB connect success!")
-});
+const { conn } = require('./MongoDB-config');
 
 const reviewSchema = mongoose.Schema({ 
   review_id: Number,
@@ -25,7 +18,6 @@ const reviewSchema = mongoose.Schema({
 const Reviews = mongoose.model("reviews", reviewSchema);
 
 const getReviewsById = (productId, callback) => {
-  let startTime = new Date()
   Reviews.find({product_id: productId})
   .lean().exec((err, data)=>{
     if (err){
@@ -33,8 +25,7 @@ const getReviewsById = (productId, callback) => {
       callback(err);
     }
     else {
-      console.log('data: ', data)
-      console.log(`query time: ${new Date() - startTime} ms`)
+      console.log('MongoDB: getReviewsById success!')
       callback(null, data);
     }
   })
