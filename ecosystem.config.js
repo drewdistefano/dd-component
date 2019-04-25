@@ -6,12 +6,12 @@ module.exports = {
   deploy: {
     production: {
       user: 'ubuntu',
-      host: '18.191.13.142',
+      host: '3.14.127.248',
       key: '~/.ssh/SDC.pem',
       ref: 'origin/master',
       repo: 'https://github.com/ten-7/dd-component.git',
       path: '/home/ubuntu/Code/DBMS',
-      'post-deploy': 'npm install && npm run maria_seed && pm2 startOrRestart ecosystem.config.js'
+      'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js'
     }
   }
 }

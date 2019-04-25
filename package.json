@@ -17,7 +17,7 @@
     "restart": "pm2 startOrRestart ecosystem.config.js",
     "deploy": "pm2 deploy ecosystem.config.js production",
     "data": "node ./db/populate.js",
-    "test": "jest"  
+    "test": "jest"
   },
   "dependencies": {
     "@material-ui/core": "^3.9.3",
