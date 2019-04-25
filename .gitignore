@@ -1,6 +1,6 @@
 example
 node_modules
-.env
+*.env
 npm-debug.log
 
 # Data files

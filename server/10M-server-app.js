@@ -19,20 +19,22 @@ app.get('/api/getreviews', (req, res) => {
       console.log('Server: unable to get review by id: ', err)
       res.end();
     }
-    console.log('app.get all reviews success')
-    for (let review of data){
-      review.proscons = {};
-      review.proscons.value = review.prosconsValue === 1 ? true : false;
-      review.prosconsValue = undefined;
-      review.proscons.reliability = review.prosconsReliability === 1 ? true : false;
-      review.prosconsReliability = undefined;
-      review.proscons.performance = review.prosconsPerformance === 1 ? true : false;
-      review.prosconsPerformance = undefined;
-      review.proscons.looks = review.prosconsLooks === 1 ? true : false;
-      review.prosconsLooks = undefined;
-      review.proscons.durability = review.prosconsDurability === 1 ? true : false;
-      review.prosconsDurability = undefined;
+    else {
+      for (let review of data){
+        review.proscons = {};
+        review.proscons.value = review.prosconsValue === 1 ? true : false;
+        review.prosconsValue = undefined;
+        review.proscons.reliability = review.prosconsReliability === 1 ? true : false;
+        review.prosconsReliability = undefined;
+        review.proscons.performance = review.prosconsPerformance === 1 ? true : false;
+        review.prosconsPerformance = undefined;
+        review.proscons.looks = review.prosconsLooks === 1 ? true : false;
+        review.prosconsLooks = undefined;
+        review.proscons.durability = review.prosconsDurability === 1 ? true : false;
+        review.prosconsDurability = undefined;
+      }
     }
+    console.log('app.get all reviews success')
     res.status(201).send(data);
   })
 })
