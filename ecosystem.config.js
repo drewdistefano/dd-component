@@ -1,6 +1,6 @@
 module.exports = {
   apps: [{
-    name: 'DMBS',
+    name: 'App10M',
     script: './server/server.js'
   }],
   deploy: {
