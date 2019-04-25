@@ -7,3 +7,7 @@ mongoose.connect('mongodb://localhost:27017/component', { useNewUrlParser: true 
     console.log('Connected to MongoDB!')
   }
 });
+
+let conn = mongoose.connection;
+
+module.exports = { conn };

@@ -5,6 +5,7 @@ const faker = require("faker");
 
 //Gets reviews based on product id
 const getReviewsById = (productId, callback) => {
+  console.log('...connecting to MariaDB...')
   pool.getConnection()
   .then((connection)=>{
     let startTime = new Date();
