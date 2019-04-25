@@ -23,8 +23,8 @@ const seed = () => {
   .then((connection)=>{
     // connection.query(`DELETE FROM records;`) <<< do I need this ? or will REPLACE keyword (below) suffice?
     console.log('loading data...'); 
-    connection.query(`LOAD DATA INFILE '${__dirname + `./db/SDC/db_records_1.txt`}' REPLACE INTO TABLE records FIELDS TERMINATED BY ',';`)
-    .then(()=>{console.log('indexing data...'); connection.query(`CREATE OR REPLACE INDEX index_id ON records (id);`)})
+    connection.query(`LOAD DATA INFILE '${__dirname + `/db_records_1.txt`}' REPLACE INTO TABLE records FIELDS TERMINATED BY ',';`)
+    .then(()=>{console.log('indexing data...'); connection.query(`CREATE OR REPLACE INDEX index_id ON records (product_id);`)})
     .then(()=>{console.log('Done seeding MariaDB!')})
     .catch((err)=>{console.log('Unable to seed MariaDB ', err)})
   })

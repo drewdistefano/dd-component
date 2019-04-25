@@ -1,7 +1,9 @@
-DROP TABLE if exists records;
+CREATE DATABASE component;
+USE component;
+
+DROP TABLE IF EXISTS records;
 
 CREATE TABLE records (
-     review_id INT,
      product_id INT,
      username VARCHAR(50),
      body VARCHAR(500),
@@ -12,6 +14,5 @@ CREATE TABLE records (
      performance INT,
      prosconsValue INT,
      likes INT,
-     dislikes INT,
-     PRIMARY KEY (review_id)
+     dislikes INT
  );
