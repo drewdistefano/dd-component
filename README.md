@@ -1,6 +1,6 @@
 # Project Name
 
-> Jay's Ratings Graph for Axe Center
+> Drew's Back End Ratings Graph for Axe Center
 
 ## Related Projects
 
