@@ -19,7 +19,6 @@ class App extends React.Component {
 
   componentDidMount() {
     window.addEventListener('productId', (e) => {
-      console.log('event triggered with ', e.detail)
       this.setState({
         productId: e.detail
       }, () => {
@@ -27,7 +26,6 @@ class App extends React.Component {
           productId: this.state.productId
         }
         // console.log('window e.detail productId, data:', data)
-        console.log('axios.post1 vvvvv')
         axios.get(`http://${deployedIP}/api/getreviews`, {params: data})
           .then(res => {
             // console.log('axios getreviews success, res.data', res.data)
@@ -98,7 +96,6 @@ class App extends React.Component {
       productId: this.state.productId
     }
     console.log('in App, data:', data)
-    console.log('axios.post2 vvvvv')
     axios.get(`http://${deployedIP}/api/getreviews`, {params: data})
       .then(res => {
         console.log('axios getreviews success, res.data', res.data)

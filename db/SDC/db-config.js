@@ -1,9 +1,10 @@
 const mariadb = require('mariadb');
-console.log('mariahost>>>', process.env.MARIA_HOST)
+console.log('creating pool...')
+console.log('MARIA_HOST>>>', process.env.MARIA_HOST)
 const pool = mariadb.createPool({
   host: process.env.MARIA_HOST,
   user: 'app',
-  password: 'password',
+  password: process.env.MARIA_PASSWORD,
   database: 'component',
   port: process.env.MARIA_PORT
   // connectionLimit = 200
