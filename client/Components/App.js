@@ -3,8 +3,8 @@ import CenteredGrid from './Grid.js';
 import axios from 'axios';
 import '../style.css';
 
-const deployedIP = 'localhost:4000';
-// const deployedIP = '3.14.127.248:4000';
+// const deployedIP = 'localhost:4000';
+const deployedIP = '3.14.127.248:4000';
 class App extends React.Component {
   constructor(props) {
     super(props);
