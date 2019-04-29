@@ -1,4 +1,5 @@
-require('dotenv').config();
+const nr = require ('newrelic')
+const env = require('dotenv').config();
 const app = require('./10M-server-app.js')
 const port = process.env.port || 4000;
 
